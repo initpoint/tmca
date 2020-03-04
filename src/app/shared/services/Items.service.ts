@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ItemsService {
-  currentItemType = new BehaviorSubject('');
+  currentItem;
   searchInItemsKeyWord = new BehaviorSubject('');
   searchByTag = new BehaviorSubject('');
 
@@ -18,13 +18,26 @@ export class ItemsService {
   }
 
   getItems() {
-    return this.db.collection<Item>('items').snapshotChanges().pipe(map(x => x.map(y => {
-      return {id: y.payload.doc.id, ...y.payload.doc.data()};
-    })));
+    return this.db.collection<Item>('items').snapshotChanges()
+      .pipe(map(x => x.map(y => {
+        return {id: y.payload.doc.id, ...y.payload.doc.data()};
+      })));
   }
 
   getUserItems(userId: string) {
-    return this.db.collection<Item>('items', ref => ref.where('user.uid', '==', userId)).snapshotChanges();
+    return this.db.collection<Item>('items', ref => ref.where('user.uid', '==', userId)).snapshotChanges()
+      .pipe(map(x => x.map(y => {
+        return {id: y.payload.doc.id, ...y.payload.doc.data()};
+      })));
+  }
+
+  getOthersPendingItems(userId: string) {
+    return this.db.collection<Item>('items', ref => ref.where('user.uid', '<', userId)
+      .where('user.uid', '>', userId)
+      .where('state', '==', 2)).snapshotChanges()
+      .pipe(map(x => x.map(y => {
+        return {id: y.payload.doc.id, ...y.payload.doc.data()};
+      })));
   }
 
   createItem(item: Item) {

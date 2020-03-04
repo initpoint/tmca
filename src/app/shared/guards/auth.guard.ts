@@ -12,11 +12,11 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    // const token = localStorage.getItem('token');
-    // if (this.jwtHelper.isTokenExpired(token)) {
-    //   this.router.navigate(['landing']);
-    //   return false;
-    // }
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['landing']);
+      return false;
+    }
     return true;
   }
 }

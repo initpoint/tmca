@@ -3,6 +3,8 @@ export class AppUser {
     public uid?: string,
     public name?: string,
     public email?: string,
+    public firstName?: string,
+    public lastName?: string,
     public jobTitle?: string,
     public createDate?: any,
     public usersLikeIds?: string[],
@@ -20,9 +22,9 @@ export class AppUser {
     public GPA?: string,
     public academicYear ?: string,
     public interests ?: string[],
-    public experience: UserExperiance[] = [],
+    // public experience: UserExperiance[] = [],
     public bio ?: string,
-    public accomplishment: UserExperiance[] = [],
+    // public accomplishment: UserExperiance[] = [],
   ) {
   }
 }

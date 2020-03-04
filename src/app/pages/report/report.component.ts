@@ -2,6 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ItemsService} from 'src/app/shared/services/Items.service';
 import {Item, ItemState} from 'src/app/shared/models/items.model';
 import {StatService} from '../../shared/services/stat.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-report',

@@ -3,6 +3,7 @@ import {ItemsService} from 'src/app/shared/services/Items.service';
 import {Item, ItemState} from 'src/app/shared/models/items.model';
 import {StatService} from '../../shared/services/stat.service';
 import {AuthService} from '../../shared/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -11,23 +12,28 @@ import {AuthService} from '../../shared/services/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class MainComponent implements OnInit {
-  items: Item[] = [];
   activeReports: Item[] = [];
   approvedReports: Item[] = [];
   pendingReview: Item[] = [];
   reportsToReview: Item[] = [];
 
-  constructor(public itemsService: ItemsService, public statService: StatService, public authService: AuthService) {
+  constructor(public itemsService: ItemsService, public statService: StatService, public authService: AuthService, public router: Router) {
   }
 
   ngOnInit() {
-    this.itemsService.getItems().subscribe(items => {
-      this.items = items;
+    this.itemsService.getUserItems(this.authService.currentUserId).subscribe(items => {
       this.activeReports = items.filter(report => report.state === ItemState.Active);
       this.approvedReports = items.filter(report => report.state === ItemState.Approved);
       this.pendingReview = items.filter(report => report.state === ItemState.Pending);
-      this.reportsToReview = items.filter(report => report.state === ItemState.Pending);
     });
+    this.itemsService.getOthersPendingItems(this.authService.currentUserId).subscribe(items => {
+      this.reportsToReview = items;
+    });
+  }
+
+  openItem(item) {
+    this.itemsService.currentItem = item;
+    this.router.navigate(['report']);
   }
 
   changeCurrentType(type: ItemState) {

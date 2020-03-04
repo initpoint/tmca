@@ -19,10 +19,13 @@ export class AuthService {
   currentUserId: string;
 
   constructor(private http: HttpClient, public auth: AngularFireAuth, private db: AngularFirestore,
-              private router: Router, private toastrService: ToastrService,
-              private jwtHelper: JwtHelperService
-  ) {
+              private router: Router, private toastrService: ToastrService, private jwtHelper: JwtHelperService) {
     this.updateCurrentUser();
+    this.currentUserId = '1234';
+    this.currentUser = {
+      uid: '1234',
+      name: 'Osama'
+    };
   }
 
   updateCurrentUser() {
@@ -30,9 +33,9 @@ export class AuthService {
       if (this.currentUser) {
         resolve();
       } else {
-        const userData = JSON.parse(localStorage.getItem('userData'));
-        if (userData && userData['user_id']) {
-          this.currentUserId = userData['user_id'];
+        const email = JSON.parse(localStorage.getItem('email'));
+        if (email) {
+          this.currentUserId = email;
           this.getUser(this.currentUserId).subscribe(userDoc => {
             this.currentUser = userDoc.payload.data();
             resolve();
@@ -46,43 +49,43 @@ export class AuthService {
     this.currentUserId = null;
     this.currentUser = null;
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['landing']);
   }
 
   getUser(userId) {
-    return this.db.collection<AppUser>('users', ref => ref.where('uid', '==', userId)).doc<AppUser>(userId).snapshotChanges();
+    return this.db.doc(`users/${userId}`).snapshotChanges();
   }
 
   updateUser(user: AppUser) {
     Object.keys(user).forEach(key => user[key] === undefined ? delete user[key] : {});
-    if (user.experience) {
-      user.experience.map(item => {
-        Object.keys(item).forEach(key => item[key] === undefined ? delete item[key] : {});
-      });
-    }
-    if (user.accomplishment) {
-      user.accomplishment.map(item => {
-        Object.keys(item).forEach(key => item[key] === undefined ? delete item[key] : {});
-      });
-    }
+    // if (user.experience) {
+    //   user.experience.map(item => {
+    //     Object.keys(item).forEach(key => item[key] === undefined ? delete item[key] : {});
+    //   });
+    // }
+    // if (user.accomplishment) {
+    //   user.accomplishment.map(item => {
+    //     Object.keys(item).forEach(key => item[key] === undefined ? delete item[key] : {});
+    //   });
+    // }
 
     const o = {experience: [], accomplishment: []};
     Object.keys(user).map(key => {
       if (key === 'experience') {
-        o['experience'] = user.experience.map(item => {
-          return {...item};
-        });
+        // o['experience'] = user.experience.map(item => {
+        //   return {...item};
+        // });
       } else if (key === 'accomplishment') {
-        o['accomplishment'] = user.accomplishment.map(item => {
-          return {...item};
-        });
+        // o['accomplishment'] = user.accomplishment.map(item => {
+        //   return {...item};
+        // });
       } else {
         o[key] = user[key];
       }
     });
 
-    return this.db.doc('users/' + user.uid).update(o).then(res=>{
-      this.toastrService.success('User Info Updated.')
+    return this.db.doc('users/' + user.uid).update(o).then(res => {
+      this.toastrService.success('User Info Updated.');
     });
   }
 
@@ -106,12 +109,11 @@ export class AuthService {
   }
 
 
-
   createUser(user: AppUser) {
     Object.keys(user).forEach(key => user[key] === undefined && delete user[key]);
     const o = {};
     Object.keys(user).map(key => o[key] = user[key]);
-    return this.db.doc('users/' + user.uid).set(o).then(res => {
+    return this.db.doc('users/' + user.email).set(o).then(res => {
       this.toastrService.success('User Created.');
     });
   }
