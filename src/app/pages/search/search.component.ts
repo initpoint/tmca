@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ItemsService} from 'src/app/shared/services/Items.service';
-import {Item, ItemType} from 'src/app/shared/models/items.model';
+import {Item, ItemState} from 'src/app/shared/models/items.model';
 import {StatService} from '../../shared/services/stat.service';
 
 @Component({
@@ -17,8 +17,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeCurrentType(type: ItemType) {
-    this.itemsService.currentItemType.next(type);
+  changeCurrentType(type: ItemState) {
   }
 
   notAvailable(tag: string) {

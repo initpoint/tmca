@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, OnChanges} from '@angular/core';
-import {FacilityReservation, FacilitySlot, Item, ItemType} from 'src/app/shared/models/items.model';
+import {FacilityReservation, FacilitySlot, Item, ItemState} from 'src/app/shared/models/items.model';
 import {AuthService} from '../../../services/auth.service';
 import {ItemsService} from '../../../services/Items.service';
 import {AppUser, UserType} from '../../../models/user.model';

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
-import {Item, ItemType} from 'src/app/shared/models/items.model';
+import {Item, ItemState} from 'src/app/shared/models/items.model';
 import {ItemsService} from 'src/app/shared/services/Items.service';
 
 @Component({
@@ -19,19 +19,19 @@ export class ItemsComponentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getItems();
+    // this.getItems();
     this.changeCurrentType();
     this.searchInItems();
   }
 
   changeCurrentType() {
-    this.itemsService.currentItemType.subscribe(value => {
-      if (value == ItemType.All) {
-        this.itemsToDisplay = this.items;
-      } else {
-        this.itemsToDisplay = this.items.filter(x => x.type == value);
-      }
-    });
+    // this.itemsService.currentItemType.subscribe(value => {
+    //   if (value == ItemState.All) {
+    //     this.itemsToDisplay = this.items;
+    //   } else {
+    //     this.itemsToDisplay = this.items.filter(x => x.state == value);
+    //   }
+    // });
   }
 
   searchInItems() {
@@ -59,18 +59,18 @@ export class ItemsComponentsComponent implements OnInit {
     });
   }
 
-  getItems(type: ItemType = ItemType.All) {
-    this.isLoading = true;
-    this.itemsService.getItems().subscribe(data => {
-      this.items = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data()
-        };
-      });
-      this.isLoading = false;
-      this.itemsToDisplay = this.items;
-    });
+  getItems(type) {
+    // this.isLoading = true;
+    // this.itemsService.getItems().subscribe(data => {
+    //   this.items = data.map(e => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       ...e.payload.doc.data()
+    //     };
+    //   });
+    //   this.isLoading = false;
+    //   this.itemsToDisplay = this.items;
+    // });
   }
 
 }

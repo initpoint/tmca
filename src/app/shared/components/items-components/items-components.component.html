@@ -8,7 +8,7 @@
     <div class="main-ws-sec">
       <div class="posts-section">
         <div *ngFor="let item of itemsToDisplay">
-          <div [ngSwitch]="item.type">
+          <div [ngSwitch]="item.state">
             <app-vacancies *ngSwitchCase="1" [item]="item"></app-vacancies>
             <app-facilities *ngSwitchCase="4" [item]="item"></app-facilities>
             <app-posts *ngSwitchCase="6" [item]="item"></app-posts>

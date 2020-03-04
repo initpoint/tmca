@@ -105,4 +105,15 @@ export class AuthService {
     return from(userAuthProimse);
   }
 
+
+
+  createUser(user: AppUser) {
+    Object.keys(user).forEach(key => user[key] === undefined && delete user[key]);
+    const o = {};
+    Object.keys(user).map(key => o[key] = user[key]);
+    return this.db.doc('users/' + user.uid).set(o).then(res => {
+      this.toastrService.success('User Created.');
+    });
+  }
+
 }

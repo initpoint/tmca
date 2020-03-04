@@ -1,14 +1,15 @@
 import {Injectable, OnInit} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {Item, ItemType} from '../models/items.model';
+import {Item, ItemState} from '../models/items.model';
 import {BehaviorSubject} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemsService {
-  currentItemType = new BehaviorSubject(ItemType.All);
+  currentItemType = new BehaviorSubject('');
   searchInItemsKeyWord = new BehaviorSubject('');
   searchByTag = new BehaviorSubject('');
 
@@ -17,7 +18,9 @@ export class ItemsService {
   }
 
   getItems() {
-    return this.db.collection<Item>('items').snapshotChanges();
+    return this.db.collection<Item>('items').snapshotChanges().pipe(map(x => x.map(y => {
+      return {id: y.payload.doc.id, ...y.payload.doc.data()};
+    })));
   }
 
   getUserItems(userId: string) {

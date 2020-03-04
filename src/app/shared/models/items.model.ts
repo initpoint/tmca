@@ -12,7 +12,7 @@ export class Item {
     public usersLikeIds?: string[],
     public usersSharedIds?: string[],
     public usersViewedIds?: string[],
-    public type?: ItemType,
+    public state?: ItemState,
     public usersApplyIds: string[] = [],
     public slots: FacilitySlot[] = [],
     public reservations: FacilityReservation[] = [],
@@ -45,12 +45,8 @@ export class FacilityReservation {
   }
 }
 
-export enum ItemType {
-  All,
-  Vacancy,
-  Grant,
-  Event,
-  Facility,
-  Program,
-  Post
+export enum ItemState {
+  Active,
+  Approved,
+  Pending
 }

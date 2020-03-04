@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%;">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="width: 100%;">
 
-  <a class="navbar-brand ml-5" [routerLink]="['/dashbord']">
+  <a class="navbar-brand ml-5" [routerLink]="['/main']">
     <img src="assets/images/logo.png" width="170" height="60" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -10,8 +10,7 @@
   <div class="collapse navbar-collapse">
     <form class="form-inline my-2 mr-auto ml-auto  my-lg-0">
       <input class="form-control search-input mr-sm-2" (keyup)="searchInItems($event.target.value)"
-             type="search"
-             placeholder="Search" aria-label="Search" [value]="searchValue">
+             type="search" placeholder="Search" aria-label="Search" [value]="searchValue">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
