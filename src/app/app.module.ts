@@ -5,27 +5,23 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutComponent} from './shared/components/layout/layout.component';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
-import {SideMenuComponent} from './shared/components/side-menu/side-menu.component';
-import {LoginComponent} from './pages/login/login.component';
 import {NotifierModule} from 'angular-notifier';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {FooterModule} from './shared/components/footer/footer.module';
 import {JwtModule} from '@auth0/angular-jwt';
 import {JwtInterceptor} from './shared/services/jwt-interceptor.service';
-
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAnalyticsModule, ScreenTrackingService, UserTrackingService} from '@angular/fire/analytics';
-import { AngularFirePerformanceModule } from '@angular/fire/performance';
-import {ProfileComponent} from './pages/directories/profile/profile.component';
+import {AngularFirePerformanceModule} from '@angular/fire/performance';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
-import {RegisterComponent} from './pages/register/register.component';
+import {FooterComponent} from './shared/components/footer/footer.component';
+import {LandingComponent} from './pages/landing/landing.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -35,19 +31,16 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     LayoutComponent,
+    FooterComponent,
     NavbarComponent,
-    SideMenuComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent
+    LandingComponent
   ],
   exports: [
     AppComponent,
     LayoutComponent,
+    FooterComponent,
     NavbarComponent,
-    SideMenuComponent,
-    LoginComponent,
-    RegisterComponent
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +48,6 @@ export function tokenGetter() {
     NotifierModule,
     HttpClientModule,
     FormsModule,
-    FooterModule,
     RouterModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

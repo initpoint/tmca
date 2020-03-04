@@ -1,6 +1,4 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {CoreService} from '../../services/core.service';
-import {Router} from '@angular/router';
 import {ItemsService} from '../../services/Items.service';
 import {AuthService} from '../../services/auth.service';
 
@@ -11,7 +9,6 @@ import {AuthService} from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   searchValue;
-  currentUserId = JSON.parse(localStorage.getItem('userData')).user_id;
 
   constructor(public itemsService: ItemsService, public authService: AuthService) {
   }
