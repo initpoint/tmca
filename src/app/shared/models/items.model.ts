@@ -2,21 +2,18 @@ import {AppUser} from './user.model';
 
 export class Item {
   public constructor(
-    public description: string = '',
-    public title: string = '',
-    public tags: string[] = [],
+    public refNumber: string = '',
+    public classNumber: string = '',
+    public classList: string = '',
+    public trademarkName: string = '',
+    public applicationName: string = '',
+    public searchText: string = '',
     public user?: AppUser,
     public id?: string,
-    public comments: string[] = [],
     public createDate?: any,
-    public usersLikeIds?: string[],
-    public usersSharedIds?: string[],
-    public usersViewedIds?: string[],
+    public updateDate?: any,
     public state?: ItemState,
-    public usersApplyIds: string[] = [],
-    public slots: FacilitySlot[] = [],
-    public reservations: FacilityReservation[] = [],
-    public approvedApplicant?: AppUser
+    public results?: any,
   ) {
   }
 }

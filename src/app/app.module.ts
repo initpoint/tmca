@@ -64,11 +64,11 @@ export function tokenGetter() {
     AngularFirePerformanceModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: JwtInterceptor,
+    //   multi: true,
+    // },
     ScreenTrackingService,
     UserTrackingService
   ],

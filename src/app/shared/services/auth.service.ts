@@ -21,11 +21,6 @@ export class AuthService {
   constructor(private http: HttpClient, public auth: AngularFireAuth, private db: AngularFirestore,
               private router: Router, private toastrService: ToastrService, private jwtHelper: JwtHelperService) {
     this.updateCurrentUser();
-    this.currentUserId = '1234';
-    this.currentUser = {
-      uid: '1234',
-      name: 'Osama'
-    };
   }
 
   updateCurrentUser() {
@@ -33,7 +28,7 @@ export class AuthService {
       if (this.currentUser) {
         resolve();
       } else {
-        const email = JSON.parse(localStorage.getItem('email'));
+        const email = localStorage.getItem('email');
         if (email) {
           this.currentUserId = email;
           this.getUser(this.currentUserId).subscribe(userDoc => {

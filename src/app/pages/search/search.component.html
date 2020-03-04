@@ -3,44 +3,14 @@
     <div class="main-section cat-navbar">
       <div class="container">
         <div class="main-section-data">
+          <ul class="list-group" *ngFor="let keyword of itemsService.currentItem?.results.keywords">
+            <li class="list-group-item">{{keyword.txt}}</li>
+          </ul>
           <div class="row ml-5 mb-4">
-            <div class="col-11">
-<!--              <div class="row">-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(0)">All</button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(1)">Vacancies</button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(2);notAvailable('grants')">Grants-->
-<!--                  </button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(3);notAvailable('events')">Events-->
-<!--                  </button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(4)">Facilities</button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(5);notAvailable('programs')">Programs-->
-<!--                  </button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="changeCurrentType(6)">Posts-->
-<!--                  </button>-->
-<!--                </div>-->
-<!--                <div class="col university-border">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="notAvailable('universities')">Universities</button>-->
-<!--                </div>-->
-<!--                <div class="col">-->
-<!--                  <button class="btn btn-light cat-btn" (click)="notAvailable('people')">People</button>-->
-<!--                </div>-->
-<!--              </div>-->
-            </div>
+
+            <button type="button" class="btn btn-outline-secondary" [routerLink]="['/report']">Report<i
+              class="fa fa-paper-plane-o"></i></button>
           </div>
-<!--          <app-items-components></app-items-components>-->
         </div>
       </div>
     </div>
