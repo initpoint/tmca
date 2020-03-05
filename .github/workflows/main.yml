@@ -16,7 +16,7 @@ jobs:
       - name: TypeScript Version
         run: npm install typescript@">=3.6.0 <3.8.0"
       - name: Build
-        run: npm run build --prod
+        run: npm run build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
