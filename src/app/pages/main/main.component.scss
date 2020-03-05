@@ -1,5 +1,24 @@
+.row {
+  margin-bottom: .5rem;
+}
+
+h4 {
+  margin-bottom: .2rem;
+}
+
+.card-body {
+  padding-bottom: .3rem;
+  padding-top: .5rem;
+}
+
+.card-text {
+  margin-bottom: 0;
+  line-height: 20px;
+}
+
 .card {
   cursor: pointer;
+  margin: 0.25rem;
 }
 
 .example-form {
