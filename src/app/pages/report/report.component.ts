@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ItemsService} from 'src/app/shared/services/Items.service';
-import {Item, ItemState} from 'src/app/shared/models/items.model';
-import {StatService} from '../../shared/services/stat.service';
-import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-report',
@@ -12,16 +10,17 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ReportComponent implements OnInit {
 
-  constructor(public itemsService: ItemsService, public statService: StatService) {
+  constructor(public itemsService: ItemsService, public router: Router) {
   }
 
   ngOnInit() {
-  }
-
-  changeCurrentType(type: ItemState) {
-  }
-
-  notAvailable(tag: string) {
-    this.statService.missingFeature(`filter-${tag}`);
+    if (!this.itemsService.currentItem) {
+      const currentItem = localStorage.getItem('currentItem');
+      if (currentItem) {
+        this.itemsService.currentItem = JSON.parse(currentItem);
+      } else {
+        this.router.navigate(['main']);
+      }
+    }
   }
 }

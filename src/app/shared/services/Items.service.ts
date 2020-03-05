@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ItemsService {
-  currentItem;
+  currentItem = null;
   searchInItemsKeyWord = new BehaviorSubject('');
   searchByTag = new BehaviorSubject('');
 
@@ -31,7 +31,7 @@ export class ItemsService {
       })));
   }
 
-    getOthersPendingItems(userId: string) {
+  getOthersPendingItems(userId: string) {
     return this.db.collection<Item>('items', ref => ref.where('user.email', '<', userId)
       .where('user.email', '>', userId)
       .where('state', '==', 2)).snapshotChanges()

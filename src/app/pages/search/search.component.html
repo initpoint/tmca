@@ -1,15 +1,43 @@
 <div class="wrapper">
   <main>
-    <div class="main-section cat-navbar">
-      <div class="container">
-        <div class="main-section-data">
-          <ul class="list-group" *ngFor="let keyword of itemsService.currentItem?.results.keywords">
-            <li class="list-group-item">{{keyword.txt}}</li>
-          </ul>
-          <div class="row ml-5 mb-4">
+    <div class="row">
+      <div class="col-2">
 
-            <button type="button" class="btn btn-outline-secondary" [routerLink]="['/report']">Report<i
-              class="fa fa-paper-plane-o"></i></button>
+        <div class="list-group list-group-flush" role="tablist">
+          <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>
+            <a *ngFor="let keyword of withResultsKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+keyword.txt" role="tab">
+              {{keyword.txt}}
+            </a>
+          <h6>Keywords Without Results ({{noResultsKeywords.length}})</h6>
+            <a *ngFor="let keyword of noResultsKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+keyword.txt" role="tab">
+              {{keyword.txt}}
+            </a>
+          <h6>Country Conflict Keywords ({{withCountryConflictKeywords.length}})</h6>
+            <a *ngFor="let keyword of withCountryConflictKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+keyword.txt" role="tab">
+              {{keyword.txt}}
+            </a>
+          <h6>Matched Keywords ({{matchedKeywords.length}}/{{allKeywords.length}})</h6>
+            <a *ngFor="let keyword of matchedKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+keyword.txt" role="tab">
+              {{keyword.txt}}
+              <span *ngIf="keyword.exact" class="badge badge-primary badge-pill pull-right">EXACT</span></a>
+        </div>
+      </div>
+      <div class=" col-10 main-section">
+
+
+        <div class="container">
+          <div class="main-section-data">
+
+
+            <div class="row ml-5 mb-4">
+
+              <button type="button" class="btn btn-outline-secondary" [routerLink]="['/report']">Report<i
+                class="fa fa-paper-plane-o"></i></button>
+            </div>
           </div>
         </div>
       </div>

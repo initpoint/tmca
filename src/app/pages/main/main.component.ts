@@ -33,14 +33,7 @@ export class MainComponent implements OnInit {
 
   openItem(item) {
     this.itemsService.currentItem = item;
-    this.router.navigate(['report']);
-  }
-
-  changeCurrentType(type: ItemState) {
-    // this.itemsService.currentItemType.next(type);
-  }
-
-  notAvailable(tag: string) {
-    this.statService.missingFeature(`filter-${tag}`);
+    localStorage.setItem('currentItem', JSON.stringify(this.itemsService.currentItem));
+    this.router.navigate(['search']);// todo make it redirects to report after finshing search page
   }
 }
