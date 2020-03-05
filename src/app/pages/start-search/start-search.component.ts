@@ -30,7 +30,7 @@ export class StartSearchComponent implements OnInit {
     this.item.user = this.authService.currentUser;
     this.item.state = ItemState.Active;
     const token = localStorage.getItem('token');
-    this.httpClient.get(`https://tmclassanalysis-staging.herokuapp.com/classification-search/search-database/internal/api?class-txt=&search-txt=${this.item.searchText}`, {
+    this.httpClient.get(`https://tmclassanalysis-staging.herokuapp.com/classification-search/search-database/internal/api?class-txt=&search-txt=${encodeURIComponent(this.item.searchText)}`, {
       headers: {Authorization: `Token ${token}`}
     }).subscribe(res => {
       this.item.results = res;

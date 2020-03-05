@@ -9,7 +9,6 @@ import {NotifierModule} from 'angular-notifier';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
-import {JwtInterceptor} from './shared/services/jwt-interceptor.service';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
@@ -64,11 +63,6 @@ export function tokenGetter() {
     AngularFirePerformanceModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: JwtInterceptor,
-    //   multi: true,
-    // },
     ScreenTrackingService,
     UserTrackingService
   ],

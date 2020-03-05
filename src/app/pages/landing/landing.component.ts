@@ -5,7 +5,6 @@ import {NotifierService} from 'angular-notifier';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {LoginVM, SignUpVM} from 'src/app/shared/models/login.model';
 import {ToastrService} from 'ngx-toastr';
-import {HttpService} from '../../shared/services/http.service';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -24,11 +23,11 @@ export class LandingComponent implements OnInit {
     private jwtHelper: JwtHelperService,
     private toastrService: ToastrService,
     private notifierService: NotifierService,
-    public httpService: HttpService,
     public httpClient: HttpClient) {
   }
 
   ngOnInit() {
+    this.notifierService.show({type: 'success', message: 'hey there'});
   }
 
   login(email?, pass?) {
