@@ -28,11 +28,7 @@ export class SearchComponent implements OnInit {
       }
     }
     this.allKeywords = this.itemsService.currentItem.keywords;
-    this.withResultsKeywords = this.allKeywords.filter(keyword => (keyword['used'] || keyword['used_head'])
-      && !keyword['countryConflict'] && !keyword['matched']);
-    this.noResultsKeywords = this.allKeywords.filter(keyword => !(keyword['used'] || keyword['used_head']));
-    this.withCountryConflictKeywords = this.allKeywords.filter(keyword => keyword['countryConflict']);
-    this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
+    this.updateKeywordsGroups();
   }
 
   txtToId(txt) {
@@ -42,5 +38,24 @@ export class SearchComponent implements OnInit {
       .split(')').join('_')
       .split('(').join('_')
       .split('-').join('_');
+  }
+
+  itemClicked(e, label, keyword) {
+    if (label.selected) {
+      label.selected = false;
+    } else {
+      label.selected = true;
+    }
+    keyword.matched = keyword.labels.filter(label => label.selected).length > 0;
+    this.itemsService.updateCurrentItem()
+    this.updateKeywordsGroups();
+  }
+
+  updateKeywordsGroups() {
+    this.withResultsKeywords = this.allKeywords.filter(keyword => (keyword['used'] || keyword['used_head'])
+      && !keyword['countryConflict'] && !keyword['matched']);
+    this.noResultsKeywords = this.allKeywords.filter(keyword => !(keyword['used'] || keyword['used_head']));
+    this.withCountryConflictKeywords = this.allKeywords.filter(keyword => keyword['countryConflict']);
+    this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
   }
 }

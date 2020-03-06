@@ -36,4 +36,8 @@ export class MainComponent implements OnInit {
     localStorage.setItem('currentItem', JSON.stringify(this.itemsService.currentItem));
     this.router.navigate(['search']);// todo make it redirects to report after finshing search page
   }
+
+  matchedCount(report) {
+    return report.keywords.filter(key => key.matched).length;
+  }
 }

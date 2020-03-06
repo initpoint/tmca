@@ -16,7 +16,7 @@
                   <div class="card" style="width: 18rem;" (click)="openItem(report)">
                     <div class="card-body">
                       <h5 class="card-title">{{report.refNumber}}</h5>
-                      <p class="card-text">3/51 Keywords Completed</p>
+                      <p class="card-text">{{matchedCount(report)}}/{{report.keywords.length}} Keywords Completed</p>
                       <p class="card-text">3 Countries</p>
                       <p class="card-text">{{report.createDate|date}}</p>
                       <p class="card-text">{{report.updateDate|date}}</p>

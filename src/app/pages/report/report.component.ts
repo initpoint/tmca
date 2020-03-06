@@ -28,5 +28,7 @@ export class ReportComponent implements OnInit {
     this.allKeywords = this.itemsService.currentItem.keywords;
     this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
     this.notMatchedKeywords = this.allKeywords.filter(keyword => !keyword['matched']);
+    console.log(this.matchedKeywords);
+    console.log(this.notMatchedKeywords);
   }
 }

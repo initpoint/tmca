@@ -1,10 +1,10 @@
 <div class="wrapper">
   <main>
     <div class="main-section cat-navbar">
-      <div class="container">
+      <div class="">
         <div class="main-section-data">
           <div class="row">
-            <div class="col-4">
+            <div class="col-3">
 
               <div class="list-group list-group-flush custom-scrollbar" role="tablist">
                 <h6>Not Matched Kewords ({{notMatchedKeywords.length}})</h6>
@@ -15,38 +15,42 @@
               </div>
 
             </div>
-            <div class="col-8">
+            <div class="col-9">
 
               <h6>Matched Results</h6>
-              <div *ngFor="let keyword of notMatchedKeywords"
-                   class="list-group custom-scrollbar"role="tablist">
+              <div *ngFor="let keyword of matchedKeywords"
+                   class="list-group custom-scrollbar" role="tablist">
                 <a *ngFor="let label of keyword.labels"
                    class="list-group-item list-group-item-action">
+                  {{keyword.txt}}
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-2">
+                      {{label.classification}}
+                    </div>
+                    <div class="col-5">
                       <span *ngIf="label['appeared_in']" class="badge badge-danger badge-pill">HEADER</span>
                       {{(label['appeared_in'] ? label.header_text : label.label_text)}}
                     </div>
-                    <div class="col-6">
+                    <div class="col-5">
                       {{label.arabic_translation}}
                     </div>
                   </div>
                 </a>
               </div>
 
-<!--              <ul *ngFor="let keyword of matchedKeywords" class="list-group">-->
-<!--                <li *ngFor="let label of keyword.keywords" class="list-group-item">-->
-<!--                  <div class="row">-->
-<!--                    <div class="col-6">-->
-<!--                      <span *ngIf="label['appeared_in']" class="badge badge-danger badge-pill">HEADER</span>-->
-<!--                      {{(label['appeared_in'] ? label.header_text : label.label_text)}}-->
-<!--                    </div>-->
-<!--                    <div class="col-6">-->
-<!--                      {{label.arabic_translation}}-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </li>-->
-<!--              </ul>-->
+              <!--              <ul *ngFor="let keyword of matchedKeywords" class="list-group">-->
+              <!--                <li *ngFor="let label of keyword.keywords" class="list-group-item">-->
+              <!--                  <div class="row">-->
+              <!--                    <div class="col-6">-->
+              <!--                      <span *ngIf="label['appeared_in']" class="badge badge-danger badge-pill">HEADER</span>-->
+              <!--                      {{(label['appeared_in'] ? label.header_text : label.label_text)}}-->
+              <!--                    </div>-->
+              <!--                    <div class="col-6">-->
+              <!--                      {{label.arabic_translation}}-->
+              <!--                    </div>-->
+              <!--                  </div>-->
+              <!--                </li>-->
+              <!--              </ul>-->
 
             </div>
           </div>

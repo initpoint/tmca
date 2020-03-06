@@ -31,12 +31,14 @@
         </div>
       </div>
       <div class=" col-10 main-section">
+
         <div class="tab-content">
           <div *ngFor="let keyword of allKeywords"
                class="tab-pane fade" [id]="txtToId(keyword.txt)" role="tabpanel" aria-labelledby="list-home-list">
             <h6>{{keyword.txt}}</h6>
             <ul class="list-group">
-              <li *ngFor="let label of keyword.labels" class="list-group-item">
+              <li *ngFor="let label of keyword.labels" class="results list-group-item list-group-item-action"
+                  (click)="itemClicked($event, label, keyword)" [ngClass]="{'active':label.selected}">
                 <div class="row">
                   <div class="col-6">
                     <span *ngIf="label['appeared_in']" class="badge badge-danger badge-pill">HEADER</span>
