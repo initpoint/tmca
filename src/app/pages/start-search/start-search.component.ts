@@ -29,21 +29,21 @@ export class StartSearchComponent implements OnInit {
       this.toastrService.warning('Enter Text To Search');
       return;
     }
-    this.toastrService.warning('Generating Keywords...')
+    this.toastrService.warning('Generating Keywords...');
     this.item.createDate = Date.now();
     this.item.updateDate = Date.now();
     this.item.user = this.authService.currentUser;
     this.item.state = ItemState.Active;
     this.itemsService.search(this.item.searchText).subscribe(res => {
       this.item.keywords = res['keywords'].map(keyword => {
-        if (keyword['used'] && keyword['used'] == true) {
-          const label = res['label_entries'].filter(label => label['keyword'] === keyword.txt)[0];
+        if (keyword['used']) {
+          const label = res['label_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase())[0];
           if (keyword['labels']) {
             keyword['labels'].push(label);
           } else {
             keyword['labels'] = [label];
           }
-          if (label['auto_add'] && keyword['auto_add'] == true) {
+          if (label['auto_add']) {
             keyword['exact'] = true;
             keyword['matched'] = true;
           }
