@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ItemsService} from 'src/app/shared/services/Items.service';
-import {Item, ItemState} from 'src/app/shared/models/items.model';
+import {Item, ItemState, Keyword} from 'src/app/shared/models/items.model';
 import {StatService} from '../../shared/services/stat.service';
 import {AuthService} from '../../shared/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
@@ -25,17 +25,35 @@ export class StartSearchComponent implements OnInit {
   }
 
   createReport() {
+    if (!this.item.searchText.length) {
+      this.toastrService.warning('Enter Text To Search');
+      return;
+    }
+    this.toastrService.warning('Generating Keywords...')
     this.item.createDate = Date.now();
     this.item.updateDate = Date.now();
     this.item.user = this.authService.currentUser;
     this.item.state = ItemState.Active;
-    const token = localStorage.getItem('token');
-    this.httpClient.get(`https://tmclassanalysis-staging.herokuapp.com/classification-search/search-database/internal/api?class-txt=&search-txt=${encodeURIComponent(this.item.searchText)}`, {
-      headers: {Authorization: `Token ${token}`}
-    }).subscribe(res => {
+    this.itemsService.search(this.item.searchText).subscribe(res => {
+      this.item.keywords = res['keywords'].map(keyword => {
+        if (keyword['used'] && keyword['used'] == true) {
+          const label = res['label_entries'].filter(label => label['keyword'] === keyword.txt)[0];
+          if (keyword['labels']) {
+            keyword['labels'].push(label);
+          } else {
+            keyword['labels'] = [label];
+          }
+          if (label['auto_add'] && keyword['auto_add'] == true) {
+            keyword['exact'] = true;
+            keyword['matched'] = true;
+          }
+        }
+        return new Keyword(keyword);
+      });
       this.item.results = res;
-      this.itemsService.createItem(this.item);
       this.itemsService.currentItem = this.item;
+      this.itemsService.createItem(this.itemsService.currentItem);
+      localStorage.setItem('currentItem', JSON.stringify(this.itemsService.currentItem));
       this.router.navigate(['/search']);
     }, error => console.log(error));
   }

@@ -19,17 +19,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // new Promise(resolve => {
-    //   new Promise(resolve1 => {
-    //     resolve1('theData');
-    //   }).then(data => {
-    //     resolve({data, theNumber: 5});
-    //   });
-    // }).then(res => {
-    //   console.log(res);
-    // });
-
     if (!this.itemsService.currentItem) {
       const currentItem = localStorage.getItem('currentItem');
       if (currentItem) {
@@ -46,5 +35,15 @@ export class SearchComponent implements OnInit {
     this.noResultsKeywords = this.allKeywords.filter(keyword => !(keyword['used'] || keyword['used_head']));
     this.withCountryConflictKeywords = this.allKeywords.filter(keyword => keyword['countryConflict']);
     this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
+    console.log(this.withResultsKeywords);
+  }
+
+  txtToId(txt) {
+    return txt
+      .split(' ').join('_')
+      .split(',').join('_')
+      .split(')').join('_')
+      .split('(').join('_')
+      .split('-').join('_');
   }
 }

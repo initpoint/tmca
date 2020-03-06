@@ -14,19 +14,21 @@ export class Item {
     public updateDate?: any,
     public state?: ItemState,
     public results?: any,
+    public keywords?: Keyword[],
+    public keywordsList: string[] = [],
   ) {
   }
 }
 
-export class FacilitySlot {
+export class Keyword {
   public constructor(
-    public isReserved?: boolean,
-    public date?: any,
-    public durationInMinutes?: number,
-    public fullDay?: boolean,
-    public contactPerson?: string,
-    public title?: string,
-    public id?: string,
+    public txt: string = '',
+    public used: boolean = false,
+    public used_head: boolean = false,
+    public countryConflict: boolean = false,
+    public matched: boolean = false,
+    public exact: boolean = false,
+    labels = []
   ) {
   }
 }
