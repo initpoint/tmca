@@ -46,14 +46,15 @@ export class StartSearchComponent implements OnInit {
       this.item.keywords = res['keywords'].map(keyword => {
         if (keyword['used']) {
           const label = res['label_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase())[0];
+          if (label['auto_add']) {
+            keyword['exact'] = true;
+            keyword['matched'] = true;
+            label['selected'] = true;
+          }
           if (keyword['labels']) {
             keyword['labels'].push(label);
           } else {
             keyword['labels'] = [label];
-          }
-          if (label['auto_add']) {
-            keyword['exact'] = true;
-            keyword['matched'] = true;
           }
         }
 
@@ -66,14 +67,15 @@ export class StartSearchComponent implements OnInit {
               }
             });
           }
+          if (label['auto_add']) {
+            keyword['exact'] = true;
+            keyword['matched'] = true;
+            label['selected'] = true;
+          }
           if (keyword['labels']) {
             keyword['labels'].push(label);
           } else {
             keyword['labels'] = [label];
-          }
-          if (label['auto_add']) {
-            keyword['exact'] = true;
-            keyword['matched'] = true;
           }
         }
         return keyword as Keyword;
