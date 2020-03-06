@@ -9,6 +9,9 @@ import {Router} from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class ReportComponent implements OnInit {
+  matchedKeywords;
+  notMatchedKeywords;
+  allKeywords;
 
   constructor(public itemsService: ItemsService, public router: Router) {
   }
@@ -22,5 +25,8 @@ export class ReportComponent implements OnInit {
         this.router.navigate(['main']);
       }
     }
+    this.allKeywords = this.itemsService.currentItem.keywords;
+    this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
+    this.notMatchedKeywords = this.allKeywords.filter(keyword => !keyword['matched']);
   }
 }

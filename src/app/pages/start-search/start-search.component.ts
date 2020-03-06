@@ -25,6 +25,11 @@ export class StartSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  match(text, keywords) {
+    const matched = keywords.find(key => text.toLowerCase().search(key) > -1);
+    return matched || null;
+  }
+
   createReport() {
     if (!this.item.searchText.length) {
       this.toastrService.warning('Enter Text To Search');
@@ -36,6 +41,7 @@ export class StartSearchComponent implements OnInit {
     this.item.updateDate = Date.now();
     this.item.user = this.authService.currentUser;
     this.item.state = ItemState.Active;
+    this.item.title = this.item.refNumber + ' - ' + this.item.trademarkName + ' - ' + this.item.classNumber;
     this.itemsService.search(this.item.searchText).subscribe(res => {
       this.item.keywords = res['keywords'].map(keyword => {
         if (keyword['used']) {
@@ -50,9 +56,28 @@ export class StartSearchComponent implements OnInit {
             keyword['matched'] = true;
           }
         }
-        return new Keyword(keyword);
+
+        if (keyword['used_head']) {
+          let label = res['class_txt_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase())[0];
+          if (!label) {
+            res['class_txt_entries'].forEach(classHeader => {
+              if (this.match(classHeader.header_text.toLowerCase(), keyword.txt.toLowerCase().split(/(?:,| )+/))) {
+                label = classHeader;
+              }
+            });
+          }
+          if (keyword['labels']) {
+            keyword['labels'].push(label);
+          } else {
+            keyword['labels'] = [label];
+          }
+          if (label['auto_add']) {
+            keyword['exact'] = true;
+            keyword['matched'] = true;
+          }
+        }
+        return keyword as Keyword;
       });
-      this.item.results = res;
       this.itemsService.currentItem = this.item;
       this.itemsService.createItem(this.itemsService.currentItem);
       localStorage.setItem('currentItem', JSON.stringify(this.itemsService.currentItem));

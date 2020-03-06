@@ -27,15 +27,12 @@ export class SearchComponent implements OnInit {
         this.router.navigate(['main']);
       }
     }
-    // todo update this filter with new item structure
-    this.allKeywords = this.itemsService.currentItem.results.keywords;
-
+    this.allKeywords = this.itemsService.currentItem.keywords;
     this.withResultsKeywords = this.allKeywords.filter(keyword => (keyword['used'] || keyword['used_head'])
       && !keyword['countryConflict'] && !keyword['matched']);
     this.noResultsKeywords = this.allKeywords.filter(keyword => !(keyword['used'] || keyword['used_head']));
     this.withCountryConflictKeywords = this.allKeywords.filter(keyword => keyword['countryConflict']);
     this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
-    console.log(this.withResultsKeywords);
   }
 
   txtToId(txt) {

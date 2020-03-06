@@ -2,6 +2,7 @@ import {AppUser} from './user.model';
 
 export class Item {
   public constructor(
+    public title: string = '',
     public refNumber: string = '',
     public classNumber: string = '',
     public classList: string = '',
