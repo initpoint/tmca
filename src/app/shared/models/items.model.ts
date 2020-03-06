@@ -33,17 +33,6 @@ export class Keyword {
   }
 }
 
-export class FacilityReservation {
-  public constructor(
-    public user: AppUser,
-    public slotId?: string,
-    public date?: any,
-    public title?: string,
-    public comment?: string,
-  ) {
-  }
-}
-
 export enum ItemState {
   Active,
   Approved,

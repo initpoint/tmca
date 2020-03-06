@@ -1,18 +1,22 @@
+.row button {
+  border-radius: 2rem;
+}
+
 .example-form {
-    width: 100%;
-} 
+  width: 100%;
+}
 
 .cat-btn {
-    background: white;
-    color: black;
-    box-shadow: 0 10px 20px rgba(59, 43, 91, 0.2);
+  background: white;
+  color: black;
+  box-shadow: 0 10px 20px rgba(59, 43, 91, 0.2);
 }
 
 .cat-navbar {
-    margin-top: -30px;
+  margin-top: -30px;
 }
 
 .university-border {
-    border-left: solid;
-    border-left-width: thin;
+  border-left: solid;
+  border-left-width: thin;
 }

@@ -15,6 +15,7 @@ import {Router} from '@angular/router';
 })
 export class StartSearchComponent implements OnInit {
   item = new Item();
+  isLoading = false;
 
   constructor(public itemsService: ItemsService, public authService: AuthService,
               public toastrService: ToastrService, public httpClient: HttpClient,
@@ -29,6 +30,7 @@ export class StartSearchComponent implements OnInit {
       this.toastrService.warning('Enter Text To Search');
       return;
     }
+    this.isLoading = true;
     this.toastrService.warning('Generating Keywords...');
     this.item.createDate = Date.now();
     this.item.updateDate = Date.now();
@@ -55,6 +57,10 @@ export class StartSearchComponent implements OnInit {
       this.itemsService.createItem(this.itemsService.currentItem);
       localStorage.setItem('currentItem', JSON.stringify(this.itemsService.currentItem));
       this.router.navigate(['/search']);
-    }, error => console.log(error));
+      this.isLoading = false;
+    }, error => {
+      console.log(error);
+      this.isLoading = false;
+    });
   }
 }

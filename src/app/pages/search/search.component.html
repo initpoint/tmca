@@ -1,66 +1,68 @@
 <div class="wrapper">
   <main>
-    <div class="row">
-      <div class="col-2">
-        <div class="list-group list-group-flush custom-scrollbar" role="tablist">
-          <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>
-          <a *ngFor="let keyword of withResultsKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-          </a>
-          <h6>Keywords Without Results ({{noResultsKeywords.length}})</h6>
-          <a *ngFor="let keyword of noResultsKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-          </a>
-          <h6>Country Conflict Keywords ({{withCountryConflictKeywords.length}})</h6>
-          <a *ngFor="let keyword of withCountryConflictKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-          </a>
-          <h6>Matched Keywords ({{matchedKeywords.length}}/{{allKeywords.length}})</h6>
-          <a *ngFor="let keyword of matchedKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-            <span *ngIf="keyword.exact" class="badge badge-primary badge-pill pull-right">EXACT</span></a>
-        </div>
-      </div>
-      <div class=" col-10 main-section">
-
-
-        <div class="tab-content">
-          <div *ngFor="let keyword of allKeywords"
-               class="tab-pane fade" [id]="txtToId(keyword.txt)" role="tabpanel" aria-labelledby="list-home-list">
-            <h6>
-              {{keyword.txt}}</h6>
-            <ul class="list-group">
-              <li *ngFor="let label of keyword.labels" class="list-group-item">{{label.label_text}}</li>
-            </ul>
-
+<!--    <app-loader>-->
+      <div class="row">
+        <div class="col-2">
+          <div class="list-group list-group-flush custom-scrollbar" role="tablist">
+            <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>
+            <a *ngFor="let keyword of withResultsKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+               role="tab">
+              {{keyword.txt}}
+            </a>
+            <h6>Keywords Without Results ({{noResultsKeywords.length}})</h6>
+            <a *ngFor="let keyword of noResultsKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+               role="tab">
+              {{keyword.txt}}
+            </a>
+            <h6>Country Conflict Keywords ({{withCountryConflictKeywords.length}})</h6>
+            <a *ngFor="let keyword of withCountryConflictKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+               role="tab">
+              {{keyword.txt}}
+            </a>
+            <h6>Matched Keywords ({{matchedKeywords.length}}/{{allKeywords.length}})</h6>
+            <a *ngFor="let keyword of matchedKeywords"
+               class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+               role="tab">
+              {{keyword.txt}}
+              <span *ngIf="keyword.exact" class="badge badge-primary badge-pill pull-right">EXACT</span></a>
           </div>
         </div>
+        <div class=" col-10 main-section">
 
 
-        <!--        <div class="list-group list-group-flush" role="tablist">-->
+          <div class="tab-content">
+            <div *ngFor="let keyword of allKeywords"
+                 class="tab-pane fade" [id]="txtToId(keyword.txt)" role="tabpanel" aria-labelledby="list-home-list">
+              <h6>
+                {{keyword.txt}}</h6>
+              <ul class="list-group">
+                <li *ngFor="let label of keyword.labels" class="list-group-item">{{label.label_text}}</li>
+              </ul>
 
-        <!--          <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>-->
-        <!--          <a *ngFor="let keyword of withResultsKeywords"-->
-        <!--             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+keyword.txt" role="tab">-->
-        <!--            {{keyword.txt}}-->
-        <!--          </a>-->
-
-
-        <!--        </div>-->
-
-        <button type="button" class="btn btn-outline-secondary" [routerLink]="['/report']">Report<i
-          class="fa fa-paper-plane-o"></i></button>
+            </div>
+          </div>
 
 
+          <!--        <div class="list-group list-group-flush" role="tablist">-->
+
+          <!--          <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>-->
+          <!--          <a *ngFor="let keyword of withResultsKeywords"-->
+          <!--             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+keyword.txt" role="tab">-->
+          <!--            {{keyword.txt}}-->
+          <!--          </a>-->
+
+
+          <!--        </div>-->
+
+          <button type="button" class="btn btn-outline-secondary" [routerLink]="['/report']">Report<i
+            class="fa fa-paper-plane-o"></i></button>
+
+
+        </div>
       </div>
-    </div>
+<!--    </app-loader>-->
   </main>
 </div>
