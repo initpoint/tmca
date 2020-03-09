@@ -4,10 +4,118 @@
       <div class="">
         <div class="main-section-data">
           <div class="row">
-            <div class="col-3">
+
+<!--            <div class="col-7 m-3">-->
+
+<!--              <div class="list-group list-group-flush custom-scrollbar" role="tablist">-->
+<!--                <h6>Not Matched Kewords ({{notMatchedKeywords.length}})</h6>-->
+<!--                <a *ngFor="let keyword of notMatchedKeywords"-->
+<!--                   class="list-group-item list-group-item-action">-->
+<!--                  {{keyword.txt}}-->
+<!--                </a>-->
+<!--              </div>-->
+
+<!--            </div>-->
+            <div class="col-6 ml-3">
+              <div class="row ml-5 mb-2 justify-content-center">
+                <div class="list-group list-group-flush custom-scrollbar" role="tablist">
+                  <h6 class="ml-5">{{itemsService.currentItem.title}} </h6>
+                  <a *ngFor="let keyword of notMatchedKeywords"
+                     class="list-group-item list-group-item-action">
+                    {{keyword.txt}}
+                  </a>
+                </div>
+              </div>
+              <div class="row ml-3">
+
+               <div class="row" >
+                  <div class="col-2">
+                    <div class="row ml-0" >
+                      <h6 style="font-size: 10px">Reference Number</h6>
+                    </div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" aria-label="Default"
+                             aria-describedby="inputGroup-sizing-default" [(ngModel)]="itemsService.currentItem.refNumber">
+                    </div>
+                  </div>
+                   <div class="col-2">
+                     <div class="row ml-0" >
+                       <h6 style="font-size: 10px">Class Number</h6>
+                     </div>
+                     <div class="input-group">
+                       <input type="text" class="form-control" aria-label="Default"
+                              aria-describedby="inputGroup-sizing-default" [(ngModel)]="itemsService.currentItem.classNumber">
+                     </div>
+                   </div>
+                 <div class="col-3">
+                   <div class="row ml-0" >
+                     <h6 style="font-size: 10px">List Of Classes</h6>
+                   </div>
+                   <div class="input-group">
+                     <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" [(ngModel)]="itemsService.currentItem.classList">
+                   </div>
+                 </div>
+                 <div class="col-2">
+                   <div class="row ml-0" >
+                     <h6 style="font-size: 10px">Trademark Name</h6>
+                   </div>
+                   <div class="input-group">
+                     <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" [(ngModel)]="itemsService.currentItem.trademarkName">
+                   </div>
+                 </div>
+                 <div class="col-3">
+                   <div class="row ml-0" >
+                     <h6 style="font-size: 10px">Application Name</h6>
+                   </div>
+                   <div class="input-group">
+                     <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" [(ngModel)]="itemsService.currentItem.applicationName">
+                   </div>
+                 </div>
+               </div>
+              </div>
+              <div class="row" >
+                <div class="col-6 ml-3 mt-3 mb-1" >
+                  <h4>Showing data selected for</h4>
+                </div>
+                <div class="col-6 ml-3 mb-1" >
+                </div>
+              </div>
+              <div class="row ml-3" >
+                <h6 style="font-size: 12px">Concatenated English Labels Text</h6>
+              </div>
+              <div class="row ml-3" >
+                <div class="form-group" style="width: 100%">
+                  <textarea style="width: 100%" class="form-control" rows="3" id="comment"
+                            [(ngModel)]="itemsService.currentItem.searchText"></textarea>
+                </div>
+              </div>
+              <div class="row ml-3" >
+                <h6 style="font-size: 12px">Concatenated Arabic Labels Text</h6>
+              </div>
+              <div class="row ml-3" >
+                <div class="form-group" style="width: 100%">
+                  <textarea style="width: 100%" class="form-control" rows="3" id="comment"
+                            [(ngModel)]="concatEnglish"></textarea>
+                </div>
+              </div>
+              <div class="row ml-3" >
+                <h6 style="font-size: 12px">Search Text</h6>
+              </div>
+              <div class="row ml-3" >
+                <div class="form-group" style="width: 100%">
+                  <textarea style="width: 100%" class="form-control" rows="3" id="comment"
+                            [(ngModel)]="itemsService.currentItem.searchText"></textarea>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-1">
 
               <div class="list-group list-group-flush custom-scrollbar" role="tablist">
-                <h6>Not Matched Kewords ({{notMatchedKeywords.length}})</h6>
+                <h6>   </h6>
                 <a *ngFor="let keyword of notMatchedKeywords"
                    class="list-group-item list-group-item-action">
                   {{keyword.txt}}
@@ -15,7 +123,7 @@
               </div>
 
             </div>
-            <div class="col-9">
+            <div class="col-4">
 
               <h6>Matched Results</h6>
               <div *ngFor="let keyword of matchedKeywords"
@@ -37,7 +145,20 @@
                 </a>
               </div>
             </div>
+            <div class="col-1">
+
+              <div class="list-group list-group-flush custom-scrollbar" role="tablist">
+                <h6>   </h6>
+                <a *ngFor="let keyword of notMatchedKeywords"
+                   class="list-group-item list-group-item-action">
+                  {{keyword.txt}}
+                </a>
+              </div>
+
+            </div>
           </div>
+
+
 
           <div class="row ml-5 mb-4">
             <div class="col-11">
