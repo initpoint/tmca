@@ -12,7 +12,8 @@ export class ReportComponent implements OnInit {
   matchedKeywords;
   notMatchedKeywords;
   allKeywords;
-
+  concatEnglish;
+  concatlabels;
   constructor(public itemsService: ItemsService, public router: Router) {
   }
 
@@ -25,10 +26,17 @@ export class ReportComponent implements OnInit {
         this.router.navigate(['main']);
       }
     }
+    console.log(this.itemsService.currentItem)
     this.allKeywords = this.itemsService.currentItem.keywords;
     this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
     this.notMatchedKeywords = this.allKeywords.filter(keyword => !keyword['matched']);
     console.log(this.matchedKeywords);
-    console.log(this.notMatchedKeywords);
+    //console.log(this.notMatchedKeywords);
+
+    this.concatEnglish = this.matchedKeywords.map(item => {
+      return item.labels.map(labelitem => {
+        return labelitem.header_txt;
+      }).join();
+    }).join();
   }
 }

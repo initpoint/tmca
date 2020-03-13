@@ -1,47 +1,122 @@
-<div class="align body" style="height: 100vh;">
-  <img src="assets/images/logo.png" width="170" height="70" style="margin: 10px;">
-  <div class="grid">
-    <div id="login" [hidden]="signupFlag">
-      <h2><span class="fontawesome-lock"></span>Sign In</h2>
-      <fieldset>
-        <p><label for="email">E-mail address</label></p>
-        <p><input type="email" id="email" name="email" [(ngModel)]="loginVM.email" placeholder="mail@address.com"></p>
+<div class="wrapper">
+  <main>
+    <div class="main-section cat-navbar">
+      <div class="">
+        <div class="main-section-data">
+          <div class="row ">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+              <div class="row mb-2 justify-content-center">
 
-        <p><label for="password">Password</label></p>
-        <p><input type="password" id="password" name="password" [(ngModel)]="loginVM.password" placeholder="password">
-        </p>
+                      <img src="assets/images/Landing_Image.png" width="670" height="400" style="margin: 0px;">
 
-        <button type="button" class="btn btn-outline-secondary" (click)="signupFlag=!signupFlag">Sign Up</button>
-        <button type="button" class="btn btn-primary pull-right" (click)="login()">Sign In</button>
+              </div>
+            </div>
+            <div class="col-1 justify-content-center">
+              <button type="button" class="btn btn-outline-secondary"
+                      style="font-size: 12px; height: 35px; width: 80px"(click)="login()">LOGIN</button>
+            </div>
+            <div class="col-1 justify-content-center">
+              <button type="button" class="btn btn-outline-secondary"
+                      style="font-size: 12px; height: 35px; width: 80px"(click)="signupFlag=!signupFlag">SIGN UP</button>
+            </div>
+          </div>
+          <div class="row mt-3 mb-5 justify-content-center">
 
-        <p><input type="button" value="Login as user15" (click)="login('user15@mailinator.com','a12345678')"><br>
-          <input type="button" value="Login as Normal User" (click)="login('normaluser@mail.com','12345678')"><br>
-          <input type="button" value="Login as Admin" (click)="login('admin@mail.com','12345678')"><br>
-          <input type="button" value="Login as Visitor" (click)="login('visitor@mail.com','12345678')"></p>
-      </fieldset>
+            <h6> Samir is doing a good job <br> Samir is happy</h6>
+
+          </div>
+          <div class="row m-2 justify-content-center">
+
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal"
+                    style="font-size: 36px; height: 75px; width: 600px">
+               START NEW SEARCH
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+<!--                  <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                      <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                  </div>-->
+                  <div class="modal-body">
+
+
+<!--                    <div class="row justify-content-center">-->
+                      <div class="align body" style="margin: 0px; height: 100vh;">
+                        <img src="assets/images/logo.png" width="170" height="70" style="margin: 10px;">
+                        <div class="grid">
+                          <div id="login" [hidden]="signupFlag">
+                            <h2><span class="fontawesome-lock"></span>Sign In</h2>
+                            <fieldset>
+                              <p><label for="email">E-mail address</label></p>
+                              <p><input type="email" id="email" name="email" [(ngModel)]="loginVM.email" placeholder="mail@address.com"></p>
+
+                              <p><label for="password">Password</label></p>
+                              <p><input type="password" id="password" name="password" [(ngModel)]="loginVM.password" placeholder="password">
+                              </p>
+
+                              <button type="button" class="btn btn-outline-secondary" (click)="signupFlag=!signupFlag">Sign Up</button>
+                              <button type="button" class="btn btn-primary pull-right" (click)="login()">Sign In</button>
+
+                              <p><input type="button" value="Login as user15" data-dismiss="modal" (click)="login('user15@mailinator.com','a12345678')"><br>
+                                <input type="button" value="Login as Normal User" data-dismiss="modal" (click)="login('normaluser@mail.com','12345678')"><br>
+                                <input type="button" value="Login as Admin" data-dismiss="modal" (click)="login('admin@mail.com','12345678')"><br>
+                                <input type="button" value="Login as Visitor" data-dismiss="modal" (click)="login('visitor@mail.com','12345678')"></p>
+                            </fieldset>
+                          </div>
+
+                          <div id="login" [hidden]="!signupFlag">
+                            <h2><span class="fontawesome-lock"></span>Sign Up</h2>
+                            <fieldset>
+                              <p><label for="first_name">First Name</label></p>
+                              <p><input type="first_name" id="first_name" name="first_name" [(ngModel)]="signupVM.first_name"
+                                        placeholder="John"></p>
+
+                              <p><label for="last_name">Last Name</label></p>
+                              <p><input type="last_name" id="last_name" name="last_name" [(ngModel)]="signupVM.last_name" placeholder="Doe">
+                              </p>
+
+                              <p><label for="email">E-mail address</label></p>
+                              <p><input type="email" id="email" name="email" [(ngModel)]="signupVM.email" placeholder="mail@address.com"></p>
+
+                              <p><label for="password">Password</label></p>
+                              <p><input type="password" id="password" name="password" [(ngModel)]="signupVM.password" placeholder="password">
+                              </p>
+
+                              <button type="button" class="btn btn-outline-secondary" (click)="signupFlag=!signupFlag">Sign In</button>
+                              <button type="button" class="btn btn-primary pull-right" (click)="signup()">Sign Up</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                      </div>
+<!--                    </div>-->
+                  </div>
+<!--                  <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--                  </div>-->
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row mt-3 mb-5 justify-content-center">
+
+            <h6> Samir is doing a good job <br> Samir is happy
+              <br> Samir is doing a good job <br> Samir is happy
+              <br>  Samir is doing a good job</h6>
+
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div id="login" [hidden]="!signupFlag">
-      <h2><span class="fontawesome-lock"></span>Sign Up</h2>
-      <fieldset>
-        <p><label for="first_name">First Name</label></p>
-        <p><input type="first_name" id="first_name" name="first_name" [(ngModel)]="signupVM.first_name"
-                  placeholder="John"></p>
-
-        <p><label for="last_name">Last Name</label></p>
-        <p><input type="last_name" id="last_name" name="last_name" [(ngModel)]="signupVM.last_name" placeholder="Doe">
-        </p>
-
-        <p><label for="email">E-mail address</label></p>
-        <p><input type="email" id="email" name="email" [(ngModel)]="signupVM.email" placeholder="mail@address.com"></p>
-
-        <p><label for="password">Password</label></p>
-        <p><input type="password" id="password" name="password" [(ngModel)]="signupVM.password" placeholder="password">
-        </p>
-
-        <button type="button" class="btn btn-outline-secondary" (click)="signupFlag=!signupFlag">Sign In</button>
-        <button type="button" class="btn btn-primary pull-right" (click)="signup()">Sign Up</button>
-      </fieldset>
-    </div>
-  </div>
+  </main>
 </div>
+
+
