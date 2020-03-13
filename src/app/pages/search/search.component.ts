@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ItemsService} from 'src/app/shared/services/Items.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +16,7 @@ export class SearchComponent implements OnInit {
   matchedKeywords;
   allKeywords;
 
-  constructor(public itemsService: ItemsService, public router: Router) {
+  constructor(public itemsService: ItemsService, public router: Router, public toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -47,7 +48,7 @@ export class SearchComponent implements OnInit {
       label.selected = true;
     }
     keyword.matched = keyword.labels.filter(label => label.selected).length > 0;
-    this.itemsService.updateCurrentItem()
+    this.itemsService.updateCurrentItem();
     this.updateKeywordsGroups();
   }
 
@@ -57,5 +58,9 @@ export class SearchComponent implements OnInit {
     this.noResultsKeywords = this.allKeywords.filter(keyword => !(keyword['used'] || keyword['used_head']));
     this.withCountryConflictKeywords = this.allKeywords.filter(keyword => keyword['countryConflict']);
     this.matchedKeywords = this.allKeywords.filter(keyword => keyword['matched']);
+  }
+
+  adjustResults() {
+    this.toastrService.warning('Updating Results...');
   }
 }

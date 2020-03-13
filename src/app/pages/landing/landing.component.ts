@@ -27,7 +27,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.notifierService.show({type: 'success', message: 'hey there'});
+    // this.notifierService.show({type: 'success', message: 'hey there'});
   }
 
   login(email?, pass?) {

@@ -78,10 +78,18 @@
                 </button>
               </div>
               <div class="modal-body p-4" id="result">
-                <p>The grid inside the modal is responsive too..</p>
-                <div class="row">
-                  <div class="col-sm-6 col-lg-3"> Content</div>
 
+                <div class="row">
+                  <div class="form-group" style="width: 100%">
+              <textarea style="width: 100%" class="form-control" rows="5" id="comment"
+                        [ngModel]="itemsService.currentItem.searchText"></textarea>
+                  </div>
+                </div>
+                <div  class="row justify-content-end mb-5">
+                  <button type="button" class="btn btn-secondary"
+                          (click)="adjustResults()">
+                    Regenerate Keywords
+                  </button>
                 </div>
               </div>
               <div class="modal-footer">
