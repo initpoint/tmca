@@ -68,25 +68,145 @@
                 style="position: absolute;right: 0;bottom: 0;height: 10%;width:100%;padding: 0;font-size: 30px"
                 [routerLink]="['/report']">Report
         </button>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-full" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body p-4" id="result">
-                <p>The grid inside the modal is responsive too..</p>
-                <div class="row">
-                  <div class="col-sm-6 col-lg-3"> Content</div>
 
+        <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="my large Modal" aria-hidden="true">
+          <div class="modal-dialog modal-lg" style="width:200%;">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-2" >
+                    <h6><br><br><br><br><br><br>Search Text</h6>
+                  </div>
+                  <div class="col-10" >
+                    <div class="form-group" style="width: 100%">
+                      <textarea style="width: 100%" class="form-control" rows="12" id="comment"
+                        [(ngModel)]="itemsService.currentItem.searchText"></textarea>
+                    </div>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col-4" >
+                    <div class="row">
+                      <h6 style="font-size: small">Suggested Actions For Higher Accuracy</h6>
+                    </div>
+                    <div class="row">
+                      <div class="col-6" >
+                        <div class="row ml-2">
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="">Option1</label>
+                          </div>
+                        </div>
+                        <div class="row ml-2">
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="">Option2</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6" >
+                        <div class="row ml-2">
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="">Option1</label>
+                          </div>
+                        </div>
+                        <div class="row ml-2">
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="">Option2</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4" >
+                    <div class="row">
+                      <h6 style="font-size: small">Custom Actions</h6>
+                    </div>
+                    <div class="row">
+                      <div class="col-2" >
+                        <h6 style="font-size: xx-small">Replace</h6>
+                      </div>
+                      <div class="col-4" >
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-label="Default"
+                                 aria-describedby="inputGroup-sizing-default">
+                        </div>
+                      </div>
+                      <div class="col-2" >
+                        <h6 style="font-size: xx-small">With</h6>
+                      </div>
+                      <div class="col-4" >
+                        <div class="input-group">
+                          <input type="text" class="form-control" aria-label="Default"
+                                 aria-describedby="inputGroup-sizing-default">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-2" >
+                        <h6 style="font-size: xx-small">Replace</h6>
+                      </div>
+                      <div class="col-4" >
+                        <h6 style="font-size: xx-small">Replace</h6>
+                      </div>
+                      <div class="col-2" >
+                        <h6 style="font-size: xx-small">With</h6>
+                      </div>
+                      <div class="col-4" >
+                        <h6 style="font-size: xx-small">With</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-1">
+                    <button type="button" class="btn btn-outline-secondary"
+                            style="font-size: 10px; height: 35px; width: 60px">USE</button>
+                    <h6><br></h6>
+                    <button type="button" class="btn btn-outline-secondary"
+                            style="font-size: 10px; height: 35px; width: 60px">REMOVE</button>
+                  </div>
+                  <div class="col-3">
+                    <div class="row justify-content-center">
+                      <div class="form-group">
+                        <select multiple class="form-control" id="sel1">
+                          <option>select  </option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="form-group">
+                        <select multiple class="form-control" id="sel2">
+                          <option>select  </option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="form-group">
+                        <select multiple class="form-control" id="sel3">
+                          <option>select  </option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="row m-5 justify-content-center">
+                  <button type="button" class="btn btn-outline-secondary"
+                          style="font-size: 24px; height: 60px; width: 100px">KEY</button>
+                </div>
+
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-              </div>
+
             </div>
           </div>
         </div>
