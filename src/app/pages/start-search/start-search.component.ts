@@ -45,38 +45,42 @@ export class StartSearchComponent implements OnInit {
     this.itemsService.search(this.item.searchText).subscribe(res => {
       this.item.keywords = res['keywords'].map(keyword => {
         if (keyword['used']) {
-          const label = res['label_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase())[0];
-          if (label['auto_add']) {
-            keyword['exact'] = true;
-            keyword['matched'] = true;
-            label['selected'] = true;
-          }
-          if (keyword['labels']) {
-            keyword['labels'].push(label);
-          } else {
-            keyword['labels'] = [label];
-          }
+          const labels = res['label_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase());
+          labels.forEach(label => {
+            if (label['auto_add']) {
+              keyword['exact'] = true;
+              keyword['matched'] = true;
+              label['selected'] = true;
+            }
+            if (keyword['labels']) {
+              keyword['labels'].push(label);
+            } else {
+              keyword['labels'] = [label];
+            }
+          });
         }
 
         if (keyword['used_head']) {
-          let label = res['class_txt_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase())[0];
-          if (!label) {
-            res['class_txt_entries'].forEach(classHeader => {
-              if (this.match(classHeader.header_text.toLowerCase(), keyword.txt.toLowerCase().split(/(?:,| )+/))) {
-                label = classHeader;
-              }
-            });
-          }
-          if (label['auto_add']) {
-            keyword['exact'] = true;
-            keyword['matched'] = true;
-            label['selected'] = true;
-          }
-          if (keyword['labels']) {
-            keyword['labels'].push(label);
-          } else {
-            keyword['labels'] = [label];
-          }
+          const labels = res['class_txt_entries'].filter(label => label['keyword'].toLowerCase() === keyword.txt.toLowerCase());
+          labels.forEach(label => {
+            if (!label) {
+              res['class_txt_entries'].forEach(classHeader => {
+                if (this.match(classHeader.header_text.toLowerCase(), keyword.txt.toLowerCase().split(/(?:,| )+/))) {
+                  label = classHeader;
+                }
+              });
+            }
+            if (label['auto_add']) {
+              keyword['exact'] = true;
+              keyword['matched'] = true;
+              label['selected'] = true;
+            }
+            if (keyword['labels']) {
+              keyword['labels'].push(label);
+            } else {
+              keyword['labels'] = [label];
+            }
+          });
         }
         return keyword as Keyword;
       });
