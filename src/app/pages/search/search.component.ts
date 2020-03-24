@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   withCountryConflictKeywords;
   matchedKeywords;
   allKeywords;
+  showAdvancedSearch = false;
 
   constructor(public itemsService: ItemsService, public router: Router, public toastrService: ToastrService) {
   }
