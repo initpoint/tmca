@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
   approvedReports: Item[] = [];
   pendingReview: Item[] = [];
   reportsToReview: Item[] = [];
+  numberOfCardsToShow = 7;
 
   constructor(public itemsService: ItemsService, public statService: StatService, public authService: AuthService, public router: Router) {
   }

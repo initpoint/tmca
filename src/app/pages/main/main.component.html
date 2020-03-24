@@ -12,7 +12,7 @@
               </h4>
 
               <div class="row">
-                <div *ngFor="let report of activeReports.slice(0,7)">
+                <div *ngFor="let report of activeReports.slice(0,numberOfCardsToShow)">
                   <div class="card" style="width: 18rem;" (click)="openItem(report)">
                     <div class="card-body">
                       <h5 class="card-title">{{report.title}}</h5>
@@ -23,7 +23,8 @@
                     </div>
                   </div>
                 </div>
-                <div *ngIf="activeReports.length > 7" class=" mt-5" style="width: 18rem; cursor: pointer">
+                <div *ngIf="activeReports.length > numberOfCardsToShow" class=" mt-5"
+                     style="width: 18rem; cursor: pointer" (click)="numberOfCardsToShow = 100">
                   <div class="card-body align-self-center">
                     <h5 class="card-title flex">View All <i class="fas fa-arrow-right"></i></h5>
                   </div>
