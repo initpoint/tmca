@@ -1,10 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ItemsService} from 'src/app/shared/services/Items.service';
 import {Item, ItemState, Keyword} from 'src/app/shared/models/items.model';
-import {StatService} from '../../shared/services/stat.service';
 import {AuthService} from '../../shared/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
-import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
 @Component({
@@ -18,8 +16,7 @@ export class StartSearchComponent implements OnInit {
   isLoading = false;
 
   constructor(public itemsService: ItemsService, public authService: AuthService,
-              public toastrService: ToastrService, public httpClient: HttpClient,
-              public router: Router) {
+              public toastrService: ToastrService, public router: Router) {
   }
 
   ngOnInit() {

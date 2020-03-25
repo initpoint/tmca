@@ -1,14 +1,22 @@
-footer{
-    box-shadow: 0 0 5px rgba(121, 121, 121, 0.3);
-    margin-top: -35px;
-    padding: 10px;
+footer {
+  box-shadow: 0 0 5px rgba(121, 121, 121, 0.3);
+  margin-top: -35px;
+  padding: 10px;
 
-    h6{
-        font-weight: bold;
-        line-height: 1.5;
-        a{
-            text-decoration: none;
-            color: blue;
-        }
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px;
+
+  h6 {
+    font-weight: bold;
+    line-height: 1.5;
+
+    a {
+      text-decoration: none;
+      color: blue;
     }
+  }
 }

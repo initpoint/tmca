@@ -1,3 +1,8 @@
+.main-section .tab-content {
+  overflow-y: scroll;
+  height: 95vh;
+}
+
 #suggestedActions .card {
   margin: .25rem;
   border: unset;
@@ -72,8 +77,9 @@
 
 .custom-scrollbar {
   direction: rtl;
-  max-height: 50rem;
-  overflow-y: scroll
+  max-height: 90vh;
+  overflow-y: scroll;
+  margin-left: 15px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -105,8 +111,8 @@
 }
 
 .list-group-item {
-  padding-top: .25rem;
-  padding-bottom: .25rem;
+  padding-top: .1rem;
+  padding-bottom: .1rem;
 }
 
 h6 {

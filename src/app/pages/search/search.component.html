@@ -1,37 +1,41 @@
-<div class="wrapper">
-  <main class="pt-0">
-    <div class="row">
-      <div class="col-2">
-        <div class="list-group list-group-flush custom-scrollbar" role="tablist">
-          <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>
-          <a *ngFor="let keyword of withResultsKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-          </a>
-          <h6>Keywords Without Results ({{noResultsKeywords.length}})</h6>
-          <a *ngFor="let keyword of noResultsKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-          </a>
-          <h6>Country Conflict Keywords ({{withCountryConflictKeywords.length}})</h6>
-          <a *ngFor="let keyword of withCountryConflictKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-          </a>
-          <h6>Matched Keywords ({{matchedKeywords.length}}/{{allKeywords.length}})</h6>
-          <a *ngFor="let keyword of matchedKeywords"
-             class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
-             role="tab">
-            {{keyword.txt}}
-            <span *ngIf="keyword.exact" class="badge badge-primary badge-pill pull-right">EXACT</span></a>
-        </div>
+<div *ngIf="!showAdvancedSearch" class="wrapper">
+  <div class="row">
+    <div class="col-2 p-0">
+      <div class="list-group list-group-flush custom-scrollbar" role="tablist" style="border-right:1px solid #cacaca;">
+        <h6>Keywords With Similar Match ({{withResultsKeywords.length}})</h6>
+        <a *ngFor="let keyword of withResultsKeywords"
+           class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+           role="tab">
+          {{keyword.txt}}
+        </a>
+        <h6>Keywords Without Results ({{noResultsKeywords.length}})</h6>
+        <a *ngFor="let keyword of noResultsKeywords"
+           class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+           role="tab">
+          {{keyword.txt}}
+        </a>
+        <h6>Country Conflict Keywords ({{withCountryConflictKeywords.length}})</h6>
+        <a *ngFor="let keyword of withCountryConflictKeywords"
+           class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+           role="tab">
+          {{keyword.txt}}
+        </a>
+        <h6>Matched Keywords ({{matchedKeywords.length}}/{{allKeywords.length}})</h6>
+        <a *ngFor="let keyword of matchedKeywords"
+           class="list-group-item list-group-item-action" data-toggle="list" [href]="'#'+txtToId(keyword.txt)"
+           role="tab">
+          {{keyword.txt}}
+          <span *ngIf="keyword.exact" class="badge badge-primary badge-pill pull-right">EXACT</span></a>
       </div>
-      <div class=" col-9 main-section">
 
-        <div class="tab-content">
+      <button type="button" class="btn btn-outline-secondary block"
+              style="height: 5vh;width:100%;padding: 0;font-size: 28px;border-radius: unset;"
+              [routerLink]="['/report']">Report
+      </button>
+    </div>
+    <div class="col-10 main-section">
+      <div class="row">
+        <div class="col-11 tab-content">
           <div *ngFor="let keyword of allKeywords"
                class="tab-pane fade" [id]="txtToId(keyword.txt)" role="tabpanel" aria-labelledby="list-home-list">
             <h6>{{keyword.txt}}</h6>
@@ -52,135 +56,126 @@
 
           </div>
         </div>
+        <div class="col-1 m-0 p-0">
+          <button role="button" class="btn btn-light block" (click)="showAdvancedSearch=true"
+                  style="height: 100%;width: 100%;">
+            <div class=""><span>Advanced Search</span></div>
 
-
-      </div>
-      <div class="col-1">
-
-        <button role="button" class="btn btn-light block" (click)="showAdvancedSearch=true"
-                style="height: 90%;width: 100%;position: absolute;top: 0;right: 0;">
-          <div class="rotate"><span>Advanced Search</span></div>
-
-        </button>
-        <button type="button" class="btn btn-outline-secondary block"
-                style="position: absolute;right: 0;bottom: 0;height: 10%;width:100%;padding: 0;font-size: 30px"
-                [routerLink]="['/report']">Report
-        </button>
-
+          </button>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
 </div>
 
-<div *ngIf="showAdvancedSearch" style="position: fixed;height: 100%;width: 100%;background: white">
-  <div class="m-4">
-    <div class="row justify-content-start">
-      <button type="button" class="close" (click)="showAdvancedSearch=false">
-        <span aria-hidden="true" style="font-size: 70px">&times;</span>
-      </button>
+<!--Advanced Search-->
+<div *ngIf="showAdvancedSearch" class="mr-4 mb-4 ml-4">
+  <div class="row justify-content-start">
+    <button type="button" class="close" (click)="showAdvancedSearch=false">
+      <span aria-hidden="true" style="font-size: 70px">&times;</span>
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-1 align-self-center">
+      <div class="row justify-content-center">Search Text</div>
     </div>
-    <div class="row">
-      <div class="col-1 align-self-center">
-        <div class="row justify-content-center">Search Text</div>
-      </div>
-      <div class="col-11">
+    <div class="col-11">
       <textarea style="width: 100%" class="form-control" rows="12" id="comment"
                 [(ngModel)]="itemsService.currentItem.searchText"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+        <h6>Suggested Actions For Higher Accuracy</h6>
+      </div>
+      <div class="row" id="suggestedActions">
+        <div class="card">
+          <div class="card-body"><input type="checkbox" value="">Split sentences at ‘and’</div>
+        </div>
+        <div class="card">
+          <div class="card-body"><input type="checkbox" value="">Change ‘include’ to ‘contain’</div>
+        </div>
+        <div class="card">
+          <div class="card-body"><input type="checkbox" value="">Split sentences at ‘or’</div>
+        </div>
+        <div class="card">
+          <div class="card-body"><input type="checkbox" value="">Remove ‘service’</div>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="row">
-          <h6>Suggested Actions For Higher Accuracy</h6>
-        </div>
-        <div class="row" id="suggestedActions">
-          <div class="card">
-            <div class="card-body"><input type="checkbox" value="">Split sentences at ‘and’</div>
-          </div>
-          <div class="card">
-            <div class="card-body"><input type="checkbox" value="">Change ‘include’ to ‘contain’</div>
-          </div>
-          <div class="card">
-            <div class="card-body"><input type="checkbox" value="">Split sentences at ‘or’</div>
-          </div>
-          <div class="card">
-            <div class="card-body"><input type="checkbox" value="">Remove ‘service’</div>
-          </div>
-        </div>
+    <div class="col-6">
+      <div class="row">
+        <h6>Custom Actions</h6>
       </div>
-      <div class="col-6">
-        <div class="row">
-          <h6>Custom Actions</h6>
-        </div>
 
-        <div class="row">
-          <div class="col-5">
-            Replace
-            <input type="text" class="form-control"></div>
-          <div class="col-5">
-            With <span style="font-size: 12px">(Use ; to split sentence)</span>
-            <input type="text" class="form-control"></div>
-          <div class="col-2">
-            <button type="button" class="btn btn-outline-secondary" style="color: green;border-radius: 20px">
-              USE
-            </button>
-          </div>
+      <div class="row">
+        <div class="col-5">
+          Replace
+          <input type="text" class="form-control"></div>
+        <div class="col-5">
+          With <span style="font-size: 12px">(Use ; to split sentence)</span>
+          <input type="text" class="form-control"></div>
+        <div class="col-2">
+          <button type="button" class="btn btn-outline-secondary" style="color: green;border-radius: 20px">
+            USE
+          </button>
         </div>
-        <div class="row mt-4">
-          <div class="col-5">
-            Replace
-            <strong>however</strong></div>
-          <div class="col-5">
-            With
-            <strong>but</strong></div>
-          <div class="col-2">
+      </div>
+      <div class="row mt-4">
+        <div class="col-5">
+          Replace
+          <strong>however</strong></div>
+        <div class="col-5">
+          With
+          <strong>but</strong></div>
+        <div class="col-2">
 
-            <button type="button" class="btn btn-outline-secondary" style="color: red;border-radius: 20px">
-              REMOVE
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="row justify-content-center">
-          <div class="form-group">
-            <select multiple class="form-control" id="sel1">
-              <option>select</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="form-group">
-            <select multiple class="form-control" id="sel2">
-              <option>select</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="form-group">
-            <select multiple class="form-control" id="sel3">
-              <option>select</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
+          <button type="button" class="btn btn-outline-secondary" style="color: red;border-radius: 20px">
+            REMOVE
+          </button>
         </div>
       </div>
     </div>
-    <div class="row m-5 justify-content-center">
-      <button type="button" class="btn btn-outline-secondary" style="font-size: 24px; height: 60px;">
-        Regenerate Keywords
-      </button>
+    <div class="col-2">
+      <div class="row justify-content-center">
+        <div class="form-group">
+          <select multiple class="form-control" id="sel1">
+            <option>select</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group">
+          <select multiple class="form-control" id="sel2">
+            <option>select</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="form-group">
+          <select multiple class="form-control" id="sel3">
+            <option>select</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="row m-5 justify-content-center">
+    <button type="button" class="btn btn-outline-secondary" style="font-size: 24px; height: 60px;">
+      Regenerate Keywords
+    </button>
   </div>
 </div>
